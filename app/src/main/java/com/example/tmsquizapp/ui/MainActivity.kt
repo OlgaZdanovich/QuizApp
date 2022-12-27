@@ -1,26 +1,27 @@
-package com.example.tmsquizapp
+package com.example.tmsquizapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.tmsquizapp.MyApplication
+import com.example.tmsquizapp.R
 import com.example.tmsquizapp.viewmodels.QuizViewModel
 import com.example.tmsquizapp.viewmodels.QuizViewModelFactory
 
 class MainActivity : AppCompatActivity() {
-    val viewModel: QuizViewModel =
-        ViewModelProvider(this, QuizViewModelFactory((application as MyApplication).repo))
+    lateinit var viewModel: QuizViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel = ViewModelProvider(this, QuizViewModelFactory((application as MyApplication).repo)).get(
+            QuizViewModel::class.java)
+
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        viewModel.cn.observe(this) {
-            Log.d("TAG", "onCreate: ${it}")
-        }
     }
 
 }

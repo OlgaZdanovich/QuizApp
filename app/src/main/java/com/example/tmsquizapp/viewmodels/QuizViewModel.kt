@@ -1,4 +1,11 @@
 package com.example.tmsquizapp.viewmodels
 
-class QuizViewModel {
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.tmsquizapp.model.Repo
+
+class QuizViewModel(repo : Repo) : ViewModel() {
+    val cn = MutableLiveData(0)
+    val listSize = repo.data.size
+
 }
